@@ -1067,3 +1067,20 @@ box-shadow:0 0 0 0 rgba(255,20,147,0);
 }
 
 }
+#player{
+
+position:fixed;
+
+width:1px;
+
+height:1px;
+
+left:-10px;
+
+top:-10px;
+
+opacity:0;
+
+pointer-events:none;
+
+}
