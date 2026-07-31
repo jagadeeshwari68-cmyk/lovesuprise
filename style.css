@@ -8,28 +8,23 @@ font-family:'Segoe UI',sans-serif;
 body{
 
 height:100vh;
-
 overflow:hidden;
 
 display:flex;
-
 justify-content:center;
-
 align-items:center;
 
-background:linear-gradient(135deg,#ff8ab5,#ffb6d9,#ffd6ea);
+background:linear-gradient(135deg,#ffc1da,#ffd7ea,#fff1f8);
 
 }
 
 .background{
 
 position:fixed;
-
 width:100%;
-
 height:100%;
 
-background:radial-gradient(circle,#ffd6e8,#ff94c2);
+background:radial-gradient(circle,#ffd9eb,#ffb8d5);
 
 z-index:-2;
 
@@ -37,9 +32,10 @@ z-index:-2;
 
 .popup{
 
-width:520px;
+width:560px;
+max-width:90%;
 
-background:rgba(255,255,255,.18);
+background:rgba(255,255,255,.72);
 
 backdrop-filter:blur(18px);
 
@@ -49,9 +45,9 @@ border-radius:30px;
 
 text-align:center;
 
-box-shadow:0 20px 50px rgba(0,0,0,.25);
+box-shadow:0 15px 40px rgba(255,105,180,.35);
 
-color:white;
+color:#b0005d;
 
 animation:pop .8s;
 
@@ -59,34 +55,30 @@ animation:pop .8s;
 
 .popup h1{
 
-font-size:28px;
-
+font-size:30px;
 margin-bottom:20px;
 
 }
 
 .popup h2{
 
-font-size:34px;
-
-margin-bottom:15px;
+font-size:36px;
+margin-bottom:20px;
 
 }
 
 .popup p{
 
 font-size:22px;
-
 margin-bottom:18px;
+line-height:1.5;
 
 }
 
 .buttons{
 
 display:flex;
-
 justify-content:center;
-
 gap:30px;
 
 margin-top:30px;
@@ -95,17 +87,17 @@ margin-top:30px;
 
 button{
 
-padding:16px 42px;
+padding:15px 45px;
 
 border:none;
 
 border-radius:40px;
 
-cursor:pointer;
-
 font-size:20px;
 
 font-weight:bold;
+
+cursor:pointer;
 
 transition:.3s;
 
@@ -113,8 +105,7 @@ transition:.3s;
 
 #yesBtn{
 
-background:#ff0066;
-
+background:#ff2f92;
 color:white;
 
 }
@@ -128,10 +119,7 @@ transform:scale(1.08);
 #noBtn{
 
 background:white;
-
-color:#ff0066;
-
-position:relative;
+color:#ff2f92;
 
 }
 
@@ -139,13 +127,15 @@ position:relative;
 
 position:fixed;
 
-padding:12px 18px;
+padding:12px 20px;
 
-background:#ff0066;
+background:#ff2f92;
 
 color:white;
 
 border-radius:30px;
+
+font-size:16px;
 
 font-weight:bold;
 
@@ -159,13 +149,20 @@ z-index:1000;
 
 }
 
-.hearts span{
+.hearts{
 
 position:fixed;
+width:100%;
+height:100%;
+pointer-events:none;
 
-font-size:25px;
+}
 
-animation:fall linear infinite;
+.hearts span{
+
+position:absolute;
+
+animation:fall linear forwards;
 
 }
 
@@ -179,11 +176,17 @@ opacity:0;
 
 }
 
+20%{
+
+opacity:1;
+
+}
+
 100%{
 
 transform:translateY(110vh);
 
-opacity:1;
+opacity:0;
 
 }
 
@@ -193,7 +196,7 @@ opacity:1;
 
 from{
 
-transform:scale(.5);
+transform:scale(.6);
 
 opacity:0;
 
@@ -206,4 +209,31 @@ transform:scale(1);
 opacity:1;
 
 }
+
+}
+
+.love{
+
+font-size:80px;
+
+animation:beat 1s infinite;
+
+margin:20px 0;
+
+}
+
+@keyframes beat{
+
+0%,100%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.2);
+
+}
+
 }
