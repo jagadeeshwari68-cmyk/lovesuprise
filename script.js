@@ -2,37 +2,11 @@
 // YOUTUBE MUSIC
 // ===============================
 
-let player;
+const player = document.getElementById("player");
+
 let firstSong = "MT99Kwx35eo";
+let secondSong = "7Yru3_H5dQo";
 
-
-function onYouTubeIframeAPIReady(){
-
-    player = new YT.Player("player",{
-
-        height:"1",
-        width:"1",
-
-        videoId:firstSong,
-
-        playerVars:{
-            autoplay:0,
-            controls:0,
-            playsinline:1,
-            rel:0
-        },
-
-        events:{
-            onReady:function(){
-
-                console.log("YouTube Player Ready");
-
-            }
-        }
-
-    });
-
-}
 
 
 // ===============================
@@ -40,8 +14,10 @@ function onYouTubeIframeAPIReady(){
 // ===============================
 
 const popup = document.getElementById("popup");
+
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
+
 const tooltip = document.getElementById("tooltip");
 
 const surprisePage = document.getElementById("surprisePage");
@@ -52,6 +28,7 @@ const foreverBtn = document.getElementById("foreverBtn");
 
 const hearts = document.querySelector(".hearts");
 const sparkles = document.querySelector(".sparkles");
+
 
 
 // ===============================
@@ -73,11 +50,14 @@ function createHeart(){
     heart.innerHTML =
     emojis[Math.floor(Math.random()*emojis.length)];
 
+
     heart.style.left =
     Math.random()*100+"vw";
 
+
     heart.style.fontSize =
     (20+Math.random()*25)+"px";
+
 
     heart.style.animationDuration =
     (5+Math.random()*4)+"s";
@@ -87,12 +67,17 @@ function createHeart(){
 
 
     setTimeout(()=>{
+
         heart.remove();
+
     },9000);
 
 }
 
+
 setInterval(createHeart,350);
+
+
 
 
 // ===============================
@@ -103,11 +88,14 @@ function createSparkle(){
 
     const sparkle=document.createElement("span");
 
+
     sparkle.style.left =
     Math.random()*100+"vw";
 
+
     sparkle.style.top =
     Math.random()*100+"vh";
+
 
     sparkle.style.animationDuration =
     (2+Math.random()*3)+"s";
@@ -117,80 +105,105 @@ function createSparkle(){
 
 
     setTimeout(()=>{
+
         sparkle.remove();
+
     },5000);
 
 }
 
+
 setInterval(createSparkle,250);
+
+
 
 
 // ===============================
 // NO BUTTON
 // ===============================
 
+
 const messages=[
 
 "🥺 Please click YES Kanny Babu ❤️",
+
 "😘 I'm waiting only for YOU ❤️",
+
 "💕 Pretty Please ❤️",
+
 "🥹 One YES = One Happy Girlfriend",
+
 "😍 Don't break my tiny heart 💖",
+
 "🌹 You know you want to click YES ❤️",
+
 "🥰 I'll be super happy if you click YES",
+
 "💗 Only YES works today 🤭"
 
 ];
 
 
+
 function moveButton(){
 
-    let padding=30;
+
+let padding=30;
 
 
-    let maxX =
-    window.innerWidth -
-    noBtn.offsetWidth -
-    padding;
+let maxX =
+window.innerWidth -
+noBtn.offsetWidth -
+padding;
 
 
-    let maxY =
-    window.innerHeight -
-    noBtn.offsetHeight -
-    padding;
+let maxY =
+window.innerHeight -
+noBtn.offsetHeight -
+padding;
 
 
-    let x=Math.random()*maxX;
 
-    let y=Math.random()*maxY;
+let x=Math.random()*maxX;
 
-
-    noBtn.style.position="fixed";
-
-    noBtn.style.left=x+"px";
-
-    noBtn.style.top=y+"px";
+let y=Math.random()*maxY;
 
 
-    tooltip.innerHTML =
-    messages[Math.floor(Math.random()*messages.length)];
+
+noBtn.style.position="fixed";
+
+noBtn.style.left=x+"px";
+
+noBtn.style.top=y+"px";
 
 
-    tooltip.style.left=x+"px";
 
-    tooltip.style.top=(y-55)+"px";
-
-    tooltip.style.opacity="1";
+tooltip.innerHTML =
+messages[Math.floor(Math.random()*messages.length)];
 
 
-    setTimeout(()=>{
 
-        tooltip.style.opacity="0";
+tooltip.style.left=x+"px";
 
-    },1800);
+tooltip.style.top=(y-55)+"px";
+
+tooltip.style.opacity="1";
+
+
+
+setTimeout(()=>{
+
+tooltip.style.opacity="0";
+
+},1800);
+
 
 }
 
+
+
+
+// Desktop
 
 noBtn.addEventListener(
 "mouseenter",
@@ -198,71 +211,91 @@ moveButton
 );
 
 
+
+// Mobile
+
 noBtn.addEventListener(
 "touchstart",
 function(e){
 
-    e.preventDefault();
+e.preventDefault();
 
-    moveButton();
+moveButton();
 
 },
-{passive:false}
+{
+passive:false
+}
 );
 
 
 
+
+
 // ===============================
-// YES BUTTON + SONG
+// YES BUTTON - START SONG
 // ===============================
+
 
 yesBtn.addEventListener(
 "click",
 ()=>{
 
 
-    popup.style.display="none";
-
-    surprisePage.style.display="flex";
+popup.style.display="none";
 
 
-    // Start YouTube song
-
-    if(player){
-
-        player.unMute();
-
-        player.setVolume(80);
-
-        player.loadVideoById(firstSong);
+surprisePage.style.display="flex";
 
 
-        setTimeout(()=>{
 
-            player.playVideo();
+// Play first song
 
-        },500);
+player.src =
+"https://www.youtube.com/embed/"
++ firstSong +
+"?autoplay=1&controls=0&loop=1&playlist="
++ firstSong;
 
-    }
 
 
 });
 
 
 
+
+
 // ===============================
-// NEXT SURPRISE
+// NEXT SURPRISE - SECOND SONG
 // ===============================
+
 
 continueBtn.addEventListener(
 "click",
 ()=>{
 
-    surprisePage.style.display="none";
 
-    finalPage.style.display="flex";
+surprisePage.style.display="none";
+
+
+finalPage.style.display="flex";
+
+
+
+// Play second song
+
+player.src =
+"https://www.youtube.com/embed/"
++ secondSong +
+"?autoplay=1&controls=0&loop=1&playlist="
++ secondSong;
+
+
 
 });
+
+
+
 
 
 
@@ -270,20 +303,26 @@ continueBtn.addEventListener(
 // FOREVER BUTTON
 // ===============================
 
+
 foreverBtn.addEventListener(
 "click",
 ()=>{
 
-    foreverBtn.innerHTML=
-    "💖 I Love You Forever 💖";
+
+foreverBtn.innerHTML =
+"💖 I Love You Forever 💖";
 
 
-    foreverBtn.disabled=true;
+foreverBtn.disabled=true;
 
 
-    heartExplosion();
+heartExplosion();
+
 
 });
+
+
+
 
 
 
@@ -291,9 +330,12 @@ foreverBtn.addEventListener(
 // HEART EXPLOSION
 // ===============================
 
+
 function heartExplosion(){
 
+
 for(let i=0;i<80;i++){
+
 
 setTimeout(()=>{
 
@@ -302,28 +344,37 @@ const heart=document.createElement("span");
 
 
 const icons=[
+
 "❤️",
 "💖",
 "💕",
 "💗",
 "💝",
 "🌹"
+
 ];
+
 
 
 heart.innerHTML =
 icons[Math.floor(Math.random()*icons.length)];
 
 
+
 heart.style.position="fixed";
+
 
 heart.style.left =
 Math.random()*100+"vw";
 
-heart.style.top="100vh";
+
+heart.style.top =
+"100vh";
+
 
 heart.style.fontSize =
 (20+Math.random()*30)+"px";
+
 
 heart.style.pointerEvents="none";
 
@@ -332,11 +383,13 @@ heart.style.transition =
 "transform 4s linear, opacity 4s linear";
 
 
+
 document.body.appendChild(heart);
 
 
 
 setTimeout(()=>{
+
 
 heart.style.transform =
 "translateY(-120vh) rotate(720deg)";
@@ -349,9 +402,12 @@ heart.style.opacity="0";
 
 
 
+
 setTimeout(()=>{
 
+
 heart.remove();
+
 
 },4000);
 
@@ -359,9 +415,14 @@ heart.remove();
 
 },i*60);
 
-}
 
 }
+
+
+}
+
+
+
 
 
 
@@ -369,9 +430,11 @@ heart.remove();
 // TOOLTIP HIDE
 // ===============================
 
+
 document.addEventListener(
 "click",
 ()=>{
+
 
 setTimeout(()=>{
 
@@ -379,13 +442,18 @@ tooltip.style.opacity="0";
 
 },300);
 
+
 });
 
 
 
+
+
+
 // ===============================
-// PAGE LOAD
+// LOAD
 // ===============================
+
 
 window.addEventListener(
 "load",
