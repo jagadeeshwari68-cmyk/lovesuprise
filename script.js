@@ -1,80 +1,80 @@
-const message = `My Love ❤️
-
-I know I made mistakes...
-
-But every heartbeat still whispers your name.
-
-Every day without your smile feels incomplete.
-
-I miss your laugh.
-I miss our conversations.
-I miss us.
-
-If I ever hurt you,
-I'm truly sorry.
-
-Please give me one more chance.
-
-I promise to love you,
-respect you,
-and make beautiful memories together.
-
-Will you forgive me? ❤️`;
-
-const typing = document.getElementById("typing");
-const openBtn = document.getElementById("openBtn");
-const letter = document.querySelector(".letter");
-const container = document.querySelector(".container");
-
-const forgive = document.getElementById("forgive");
-const ignore = document.getElementById("ignore");
-
-const popup = document.getElementById("popup");
-const close = document.getElementById("close");
+const text =
+"Hi Kanny ❤️";
 
 let i = 0;
 
-openBtn.onclick = () => {
+function typing(){
 
-    container.classList.add("hidden");
-    letter.classList.remove("hidden");
+if(i<text.length){
 
-    typeWriter();
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typing,120);
+
+}
+
+}
+
+typing();
+
+const yes=document.getElementById("yesBtn");
+
+const no=document.getElementById("noBtn");
+
+const popup=document.getElementById("popup");
+
+const tooltip=document.getElementById("tooltip");
+
+const msgs=[
+
+"🥺 Please click YES",
+
+"❤️ Only YES works",
+
+"😘 Don't reject me",
+
+"💕 Pretty Please",
+
+"😂 Nice Try"
+
+];
+
+function move(){
+
+const x=Math.random()*(window.innerWidth-180);
+
+const y=Math.random()*(window.innerHeight-100);
+
+no.style.position="fixed";
+
+no.style.left=x+"px";
+
+no.style.top=y+"px";
+
+tooltip.innerHTML=msgs[Math.floor(Math.random()*msgs.length)];
+
+tooltip.style.left=x+"px";
+
+tooltip.style.top=(y-50)+"px";
+
+tooltip.style.opacity="1";
+
+setTimeout(()=>{
+
+tooltip.style.opacity="0";
+
+},1200);
+
+}
+
+no.addEventListener("mouseover",move);
+
+no.addEventListener("click",move);
+
+yes.onclick=()=>{
+
+popup.style.display="flex";
 
 };
-
-function typeWriter(){
-
-    if(i < message.length){
-
-        typing.innerHTML += message.charAt(i);
-
-        i++;
-
-        setTimeout(typeWriter,40);
-
-    }
-
-}
-
-ignore.addEventListener("mouseover",()=>{
-
-    const x=Math.random()*300-150;
-
-    const y=Math.random()*250-125;
-
-    ignore.style.transform=`translate(${x}px,${y}px)`;
-
-});
-
-forgive.onclick=()=>{
-
-    popup.classList.remove("hidden");
-
-}
-
-close.onclick=()=>{
-
-    popup.classList.add("hidden");
-
-}
