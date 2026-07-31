@@ -429,22 +429,55 @@ blink .8s infinite;
 
 .cuteGif{
 
-width:260px;
+width:320px;
 
-max-width:90%;
+height:320px;
 
-border-radius:25px;
+object-fit:cover;
 
-margin:30px auto;
+border-radius:50%;
 
-display:block;
+border:8px solid white;
 
 box-shadow:
 
-0 15px 35px rgba(255,20,147,.25);
+0 0 40px #ff5aa7,
+
+0 0 80px pink;
+
+animation:
+
+heartbeat 1.5s infinite,
+
+floatPhoto 5s ease-in-out infinite;
+
+margin:25px auto;
+
+display:block;
 
 }
 
+@keyframes floatPhoto{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
 /* ===========================
    LOVE MESSAGE
 =========================== */
