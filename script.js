@@ -2,14 +2,30 @@
 // ELEMENTS
 // ===============================
 let player;
+let firstSong = "MT99Kwx35eo";
+
+
+function onYouTubeIframeAPIReady(){
+
+    player = new YT.Player("player",{
+
+        height:"0",
+        width:"0",
+
+        videoId:"",
+
+        playerVars:{
+            autoplay:0,
+            controls:0
+        }
+
+    });
+
+}
 const popup = document.getElementById("popup");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const tooltip = document.getElementById("tooltip");
-
-const musicBtn = document.getElementById("musicBtn");
-const bgMusic = document.getElementById("bgMusic");
-
 const surprisePage = document.getElementById("surprisePage");
 const finalPage = document.getElementById("finalPage");
 
@@ -20,33 +36,6 @@ const hearts = document.querySelector(".hearts");
 const sparkles = document.querySelector(".sparkles");
 
 // ===============================
-// MUSIC
-// ===============================
-
-let playing = false;
-
-musicBtn.addEventListener("click", () => {
-
-    if (!playing) {
-
-        bgMusic.play();
-
-        musicBtn.innerHTML = "🎵 Pause Music";
-
-        playing = true;
-
-    } else {
-
-        bgMusic.pause();
-
-        musicBtn.innerHTML = "🎵 Play Music";
-
-        playing = false;
-
-    }
-
-});
-
 // ===============================
 // HEARTS
 // ===============================
@@ -217,18 +206,23 @@ noBtn.addEventListener(
 
 yesBtn.addEventListener("click", () => {
 
+
     popup.style.display = "none";
+
 
     surprisePage.style.display = "flex";
 
-    if (bgMusic.paused) {
-        bgMusic.play().catch(() => {
-            console.log("Music autoplay blocked until user interaction.");
-        });
 
-        musicBtn.innerHTML = "🎵 Pause Music";
-        playing = true;
+    // Play YouTube song after YES click
+
+    if(player){
+
+        player.loadVideoById(firstSong);
+
+        player.setVolume(50);
+
     }
+
 
 });
 
