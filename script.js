@@ -4,8 +4,26 @@
 
 const player = document.getElementById("player");
 
-let firstSong = "MT99Kwx35eo";
-let secondSong = "7Yru3_H5dQo";
+const firstSong = "MT99Kwx35eo";
+const secondSong = "7Yru3_H5dQo";
+
+
+function playSong(songId){
+
+    player.src = "";
+
+    setTimeout(()=>{
+
+        player.src =
+        "https://www.youtube.com/embed/"
+        + songId +
+        "?autoplay=1&controls=0&loop=1&playlist="
+        + songId +
+        "&playsinline=1&rel=0";
+
+    },300);
+
+}
 
 
 
@@ -203,6 +221,7 @@ tooltip.style.opacity="0";
 
 
 
+
 // Desktop
 
 noBtn.addEventListener(
@@ -226,14 +245,16 @@ moveButton();
 {
 passive:false
 }
+
 );
 
 
 
 
 
+
 // ===============================
-// YES BUTTON - START SONG
+// YES BUTTON
 // ===============================
 
 
@@ -248,15 +269,9 @@ popup.style.display="none";
 surprisePage.style.display="flex";
 
 
+// Start first song
 
-// Play first song
-
-player.src =
-"https://www.youtube.com/embed/"
-+ firstSong +
-"?autoplay=1&controls=0&loop=1&playlist="
-+ firstSong;
-
+playSong(firstSong);
 
 
 });
@@ -265,8 +280,9 @@ player.src =
 
 
 
+
 // ===============================
-// NEXT SURPRISE - SECOND SONG
+// NEXT SURPRISE BUTTON
 // ===============================
 
 
@@ -281,15 +297,9 @@ surprisePage.style.display="none";
 finalPage.style.display="flex";
 
 
+// Start second song
 
-// Play second song
-
-player.src =
-"https://www.youtube.com/embed/"
-+ secondSong +
-"?autoplay=1&controls=0&loop=1&playlist="
-+ secondSong;
-
+playSong(secondSong);
 
 
 });
@@ -320,6 +330,7 @@ heartExplosion();
 
 
 });
+
 
 
 
@@ -385,6 +396,7 @@ heart.style.transition =
 
 
 document.body.appendChild(heart);
+
 
 
 
