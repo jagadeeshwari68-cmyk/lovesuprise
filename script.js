@@ -1,7 +1,7 @@
 // ===============================
 // ELEMENTS
 // ===============================
-
+let player;
 const popup = document.getElementById("popup");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
