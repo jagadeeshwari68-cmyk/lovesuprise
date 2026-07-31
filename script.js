@@ -1,209 +1,65 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-}
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const tooltip = document.getElementById("tooltip");
 
-body{
+const messages = [
+"🥺 Please click YES Kanny Babu ❤️",
+"😘 I'm waiting only for YOU ❤️",
+"💔 Don't break my little heart",
+"😂 NO isn't available today",
+"💕 Pretty Please...",
+"🥹 One YES = One Happy Girlfriend"
+];
 
-height:100vh;
+function moveButton(){
 
-overflow:hidden;
+const x=Math.random()*(window.innerWidth-180);
+const y=Math.random()*(window.innerHeight-80);
 
-display:flex;
+noBtn.style.position="fixed";
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
 
-justify-content:center;
+tooltip.innerHTML=messages[Math.floor(Math.random()*messages.length)];
 
-align-items:center;
+tooltip.style.left=x+"px";
+tooltip.style.top=(y-45)+"px";
 
-background:linear-gradient(135deg,#ff8ab5,#ffb6d9,#ffd6ea);
+tooltip.style.opacity="1";
 
-}
-
-.background{
-
-position:fixed;
-
-width:100%;
-
-height:100%;
-
-background:radial-gradient(circle,#ffd6e8,#ff94c2);
-
-z-index:-2;
+setTimeout(()=>{
+tooltip.style.opacity="0";
+},1500);
 
 }
 
-.popup{
+noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener("click",moveButton);
 
-width:520px;
+yesBtn.onclick=()=>{
 
-background:rgba(255,255,255,.18);
+window.location.href="love.html";
 
-backdrop-filter:blur(18px);
+};
 
-padding:40px;
+// Floating hearts
 
-border-radius:30px;
+const hearts=document.querySelector(".hearts");
 
-text-align:center;
+setInterval(()=>{
 
-box-shadow:0 20px 50px rgba(0,0,0,.25);
+const heart=document.createElement("span");
 
-color:white;
+heart.innerHTML="❤️";
 
-animation:pop .8s;
+heart.style.left=Math.random()*100+"vw";
 
-}
+heart.style.animationDuration=(4+Math.random()*4)+"s";
 
-.popup h1{
+heart.style.fontSize=(20+Math.random()*25)+"px";
 
-font-size:28px;
+hearts.appendChild(heart);
 
-margin-bottom:20px;
+setTimeout(()=>heart.remove(),8000);
 
-}
-
-.popup h2{
-
-font-size:34px;
-
-margin-bottom:15px;
-
-}
-
-.popup p{
-
-font-size:22px;
-
-margin-bottom:18px;
-
-}
-
-.buttons{
-
-display:flex;
-
-justify-content:center;
-
-gap:30px;
-
-margin-top:30px;
-
-}
-
-button{
-
-padding:16px 42px;
-
-border:none;
-
-border-radius:40px;
-
-cursor:pointer;
-
-font-size:20px;
-
-font-weight:bold;
-
-transition:.3s;
-
-}
-
-#yesBtn{
-
-background:#ff0066;
-
-color:white;
-
-}
-
-#yesBtn:hover{
-
-transform:scale(1.08);
-
-}
-
-#noBtn{
-
-background:white;
-
-color:#ff0066;
-
-position:relative;
-
-}
-
-#tooltip{
-
-position:fixed;
-
-padding:12px 18px;
-
-background:#ff0066;
-
-color:white;
-
-border-radius:30px;
-
-font-weight:bold;
-
-opacity:0;
-
-pointer-events:none;
-
-transition:.3s;
-
-z-index:1000;
-
-}
-
-.hearts span{
-
-position:fixed;
-
-font-size:25px;
-
-animation:fall linear infinite;
-
-}
-
-@keyframes fall{
-
-0%{
-
-transform:translateY(-100px);
-
-opacity:0;
-
-}
-
-100%{
-
-transform:translateY(110vh);
-
-opacity:1;
-
-}
-
-}
-
-@keyframes pop{
-
-from{
-
-transform:scale(.5);
-
-opacity:0;
-
-}
-
-to{
-
-transform:scale(1);
-
-opacity:1;
-
-}
-}
+},300);
