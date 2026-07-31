@@ -1,80 +1,33 @@
-const text =
-"Hi Kanny ❤️";
+const overlay=document.getElementById("overlay");
 
-let i = 0;
+document.getElementById("startBtn").onclick=function(){
 
-function typing(){
-
-if(i<text.length){
-
-document.getElementById("typing").innerHTML+=text.charAt(i);
-
-i++;
-
-setTimeout(typing,120);
+overlay.style.display="flex";
 
 }
 
-}
+function closePopup(){
 
-typing();
-
-const yes=document.getElementById("yesBtn");
-
-const no=document.getElementById("noBtn");
-
-const popup=document.getElementById("popup");
-
-const tooltip=document.getElementById("tooltip");
-
-const msgs=[
-
-"🥺 Please click YES",
-
-"❤️ Only YES works",
-
-"😘 Don't reject me",
-
-"💕 Pretty Please",
-
-"😂 Nice Try"
-
-];
-
-function move(){
-
-const x=Math.random()*(window.innerWidth-180);
-
-const y=Math.random()*(window.innerHeight-100);
-
-no.style.position="fixed";
-
-no.style.left=x+"px";
-
-no.style.top=y+"px";
-
-tooltip.innerHTML=msgs[Math.floor(Math.random()*msgs.length)];
-
-tooltip.style.left=x+"px";
-
-tooltip.style.top=(y-50)+"px";
-
-tooltip.style.opacity="1";
-
-setTimeout(()=>{
-
-tooltip.style.opacity="0";
-
-},1200);
+overlay.style.display="none";
 
 }
 
-no.addEventListener("mouseover",move);
+const hearts=document.querySelector(".hearts");
 
-no.addEventListener("click",move);
+for(let i=0;i<60;i++){
 
-yes.onclick=()=>{
+let h=document.createElement("span");
 
-popup.style.display="flex";
+h.innerHTML="❤️";
 
-};
+h.style.left=Math.random()*100+"vw";
+
+h.style.animationDuration=5+Math.random()*5+"s";
+
+h.style.fontSize=15+Math.random()*35+"px";
+
+h.style.animationDelay=Math.random()*5+"s";
+
+hearts.appendChild(h);
+
+}
