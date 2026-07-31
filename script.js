@@ -10,15 +10,24 @@ function onYouTubeIframeAPIReady(){
 
     player = new YT.Player("player",{
 
-        height:"0",
-        width:"0",
+        height:"1",
+        width:"1",
 
-        videoId:"",
+        videoId:firstSong,
 
         playerVars:{
             autoplay:0,
             controls:0,
-            playsinline:1
+            playsinline:1,
+            rel:0
+        },
+
+        events:{
+            onReady:function(){
+
+                console.log("YouTube Player Ready");
+
+            }
         }
 
     });
@@ -86,7 +95,6 @@ function createHeart(){
 setInterval(createHeart,350);
 
 
-
 // ===============================
 // SPARKLES
 // ===============================
@@ -117,31 +125,22 @@ function createSparkle(){
 setInterval(createSparkle,250);
 
 
-
 // ===============================
-// NO BUTTON TOOLTIP
+// NO BUTTON
 // ===============================
 
 const messages=[
 
 "🥺 Please click YES Kanny Babu ❤️",
-
 "😘 I'm waiting only for YOU ❤️",
-
 "💕 Pretty Please ❤️",
-
 "🥹 One YES = One Happy Girlfriend",
-
 "😍 Don't break my tiny heart 💖",
-
 "🌹 You know you want to click YES ❤️",
-
 "🥰 I'll be super happy if you click YES",
-
 "💗 Only YES works today 🤭"
 
 ];
-
 
 
 function moveButton(){
@@ -161,12 +160,9 @@ function moveButton(){
     padding;
 
 
-    let x =
-    Math.random()*maxX;
+    let x=Math.random()*maxX;
 
-
-    let y =
-    Math.random()*maxY;
+    let y=Math.random()*maxY;
 
 
     noBtn.style.position="fixed";
@@ -176,11 +172,8 @@ function moveButton(){
     noBtn.style.top=y+"px";
 
 
-
     tooltip.innerHTML =
-    messages[
-        Math.floor(Math.random()*messages.length)
-    ];
+    messages[Math.floor(Math.random()*messages.length)];
 
 
     tooltip.style.left=x+"px";
@@ -199,17 +192,11 @@ function moveButton(){
 }
 
 
-
-// Desktop
-
 noBtn.addEventListener(
 "mouseenter",
 moveButton
 );
 
-
-
-// Mobile
 
 noBtn.addEventListener(
 "touchstart",
@@ -221,15 +208,13 @@ function(e){
 
 },
 {passive:false}
-
 );
 
 
 
 // ===============================
-// YES BUTTON
+// YES BUTTON + SONG
 // ===============================
-
 
 yesBtn.addEventListener(
 "click",
@@ -238,20 +223,25 @@ yesBtn.addEventListener(
 
     popup.style.display="none";
 
-
     surprisePage.style.display="flex";
 
 
-
-    // PLAY SONG
+    // Start YouTube song
 
     if(player){
 
+        player.unMute();
+
+        player.setVolume(80);
+
         player.loadVideoById(firstSong);
 
-        player.playVideo();
 
-        player.setVolume(50);
+        setTimeout(()=>{
+
+            player.playVideo();
+
+        },500);
 
     }
 
@@ -264,17 +254,13 @@ yesBtn.addEventListener(
 // NEXT SURPRISE
 // ===============================
 
-
 continueBtn.addEventListener(
 "click",
 ()=>{
 
-
     surprisePage.style.display="none";
 
-
     finalPage.style.display="flex";
-
 
 });
 
@@ -284,11 +270,9 @@ continueBtn.addEventListener(
 // FOREVER BUTTON
 // ===============================
 
-
 foreverBtn.addEventListener(
 "click",
 ()=>{
-
 
     foreverBtn.innerHTML=
     "💖 I Love You Forever 💖";
@@ -299,16 +283,13 @@ foreverBtn.addEventListener(
 
     heartExplosion();
 
-
 });
-
 
 
 
 // ===============================
 // HEART EXPLOSION
 // ===============================
-
 
 function heartExplosion(){
 
@@ -321,14 +302,12 @@ const heart=document.createElement("span");
 
 
 const icons=[
-
 "❤️",
 "💖",
 "💕",
 "💗",
 "💝",
 "🌹"
-
 ];
 
 
@@ -338,24 +317,19 @@ icons[Math.floor(Math.random()*icons.length)];
 
 heart.style.position="fixed";
 
-
-heart.style.left=
+heart.style.left =
 Math.random()*100+"vw";
-
 
 heart.style.top="100vh";
 
-
-heart.style.fontSize=
+heart.style.fontSize =
 (20+Math.random()*30)+"px";
-
 
 heart.style.pointerEvents="none";
 
 
-heart.style.transition=
+heart.style.transition =
 "transform 4s linear, opacity 4s linear";
-
 
 
 document.body.appendChild(heart);
@@ -364,8 +338,7 @@ document.body.appendChild(heart);
 
 setTimeout(()=>{
 
-
-heart.style.transform=
+heart.style.transform =
 "translateY(-120vh) rotate(720deg)";
 
 
@@ -396,18 +369,15 @@ heart.remove();
 // TOOLTIP HIDE
 // ===============================
 
-
 document.addEventListener(
 "click",
 ()=>{
-
 
 setTimeout(()=>{
 
 tooltip.style.opacity="0";
 
 },300);
-
 
 });
 
@@ -417,13 +387,10 @@ tooltip.style.opacity="0";
 // PAGE LOAD
 // ===============================
 
-
 window.addEventListener(
 "load",
 ()=>{
 
-console.log(
-"❤️ Love Surprise Loaded ❤️"
-);
+console.log("❤️ Love Surprise Loaded ❤️");
 
 });
